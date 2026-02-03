@@ -1,0 +1,1577 @@
+/* IMPORTS DE FONTES UTILIZADAS NO SITE */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    /* Fonts */
+    --font-body: "Raleway", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-title-hero: "Lora", serif;
+    --font-subtitle-hero: "Montserrat", sans-serif;
+
+    /* Colors */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Isso fará com que qualquer link interno do site deslize suavemente */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    font-family: var(--font-body);
+}
+
+header {
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    z-index: 200;
+    background: linear-gradient(to right, #c9a87c 0%, #b8926b 100%);
+    box-shadow: 0px 3px 40px 2px rgba(0, 0, 0, 0.29);
+
+    /* Estado inicial: Escondido acima da tela */
+    transform: translateY(-100%);
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Estado final: Visível na tela */
+header.visible {
+    transform: translateY(0);
+}
+
+.menu {
+    gap: 10px;
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.logo {
+    width: 30%;
+    text-align: center;
+}
+
+#logo {
+    width: 80px;
+}
+
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.mobile-menu div {
+    width: 32px;
+    height: 2px;
+    background: aliceblue;
+    margin: 8px;
+    transition: 0.3s;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 1rem;
+    width: 70%;
+}
+
+.links > li > a {
+    position: relative;
+    color: aliceblue;
+    text-decoration: none;
+    width: 100%;
+    transition: color 0.3s ease;
+    padding: 10px;
+}
+
+.links > li > a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.links > li > a:hover::after,
+.links > li > a.secao-ativa::after {
+    width: 100%; /* A linha cresce até 100% da largura do texto */
+}
+
+/* Evitar que o botão de "Contato" (pérola) ganhe essa linha, 
+pois ele já tem o efeito de brilho */
+.links li.destaque-links a::after {
+    display: none;
+}
+
+.links > li > a.secao-ativa {
+    /* color: #ffffff; */
+    font-weight: 700;
+}
+
+.destaque-links{
+    background: linear-gradient(135deg, #ffffff 0%, #f8f1e5 25%, #f0f0f0 50%, #e8f1f2 75%, #f5e9f0 100%);
+    /* Adicionando um leve brilho acetinado */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    padding: 10px 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.destaque-links:hover {
+  transform: scale(1.05);
+  transition: all 0.5s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15),
+    inset 0 2px 5px rgba(255, 255, 255, 0.9);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 40%, #e8eef2 100%);
+}
+
+.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito infinito de brilho de luz no botão de CTA */
+.shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(30deg);
+    transition: none;
+
+    /* Para animação infinita */
+    animation: pearl-shimmer 4s infinite;
+}
+
+@keyframes pearl-shimmer {
+    0% {
+        left: -60%;
+    }
+    20% {
+        left: 120%; /* Brilho de move rápido */
+    }
+    100% {
+        left: 120%; /* Pausa o brilho no final antes de repetir */
+    }
+}
+
+/* Opcional: pausar animação quando o mouse estiver em cima para facilitar o clique */
+.shimmer:hover::after {
+    animation-play-state: paused;
+}
+
+.links > .destaque-links > a {
+    color: #8B6D45;
+    font-weight: 700;
+    padding: 0;
+}
+
+/* Isso faz com que a âncora pare um pouco antes do topo, respeitando o header */
+section {
+    scroll-margin-top: 40px; /* Ajuste conforme a altura do header */
+}
+
+/* HERO SECTION */
+
+#hero {
+    padding: 5rem;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        /* Escurece a foto */
+        url('../assets/img/hero-section/imagem_nara_costa_sentada.webp');
+    background-repeat: no-repeat;
+    /* Não repete a imagem */
+    background-size: cover;
+    /* Tamanho da imagem (cobre todo o fundo) */
+    background-position: center;
+    /* Posiciona a imagem no centro */
+    /* ATALHO: #fff background: image(url('../assets/img/imagem_nara_costa_sentada.webp')) no-repeat center center/cover; */
+    color: aliceblue;
+}
+
+#hero > img {
+    width: 128px;
+    /* padding: 2rem; */
+}
+
+.content-hero {
+    width: 600px;
+}
+
+.title-hero {
+    font-family: var(--font-title-hero);
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 1.5rem 0 1rem 0;
+    text-shadow: 0px 3px 40px 2px rgb(0, 0, 0, 0.50);
+}
+
+.title-hero > span {
+    display: block;
+    background: linear-gradient(to bottom, #f0d799, #b89548);
+    /* Tons de dourado */
+    -webkit-background-clip: text;
+    /* Faz o fundo ficar só no texto */
+    -webkit-text-fill-color: transparent;
+    /* Torna a cor da letra invisível para mostrar o gradiente */
+    font-weight: bold;
+}
+
+.subtitle-hero {
+    font-family: var(--font-subtitle-hero);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0px 3px 40px 2px rgb(0, 0, 0, 0.50);
+}
+
+.hero-contato {
+    display: inline-block;
+    /* Permite aplicar padding e altura corretamente */
+    align-items: center;
+    position: relative;
+    width: 220px;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    border-radius: 50px;
+    border: none;
+    background: #d4b46b;
+    text-decoration: none;
+    font-family: var(--font-subtitle-hero);
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.hero-contato::after {
+    font-family: 'Material Symbols Outlined';
+    content: '\e5c8';
+    font-size: 16px;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 700,
+        /* Aumentar para 700 se quiser a seta mais grossa */
+        'grad' 0,
+        'opsz' 24;
+    position: absolute;
+    right: 35px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hero-contato:hover {
+    translate: translateY(-2px);
+    /* Move o botão para cima para dar profundidade */
+    box-shadow: 0 0 20px 5px rgba(212, 180, 107, 0.6);
+}
+
+.hero-contato:hover::after {
+    transform: translateX(5px);
+    /* Move o arrow para a esquerda para dar profundidade */
+}
+
+/* TÍTULOS DE SEÇÕES */
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: .8rem;
+    /* color: #2a1b4a; */
+    border-bottom: 3px solid #a67c52;
+}
+
+/* h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #c9a87c 0%, #d4af37 100%);
+  margin: 10px auto 0;
+} */
+
+h3 {
+    color: #3a3a3a;
+    font-size: 1.1rem;
+}
+
+/* TEXTOS DE SEÇÕES */
+p {
+    color: #4a4a4a;
+    /* font-size: 14px; */
+}
+
+.card-services-content > p,
+.card-content-depoimentos > p {
+    padding: .5rem;
+    color: #6a6a6a;
+    font-size: 14px;
+}
+
+/* SEÇÃO SOBRE MIM */
+
+#sobre-mim {
+    padding: 50px 10px;
+    width: 100%;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-about-me {
+    width: 100%;
+    height: 100%;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.section-about-me > img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 3px 40px 2px rgb(0, 0, 0, 0.50);
+    text-align: center;
+}
+
+.card-about-me-text {
+    width: 400px;
+    height: 40%;
+    text-align: center;
+}
+
+.card-about-me-text > p {
+    padding: .5rem;
+}
+
+/* SEÇÃO DE SERVIÇOS */
+#servicos {
+    padding: 50px 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f9f7f4;
+}
+
+.row-1 {
+    padding-top: 1rem;
+}
+
+.row-1,
+.row-2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+}
+
+.card-services {
+    height: 300px;
+    width: 350px;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.row-1 > .card-services {
+    height: 300px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.row-1 > .card-services > img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    position: absolute;
+    top: 0;
+}
+
+.row-1 > .card-services > .card-services-content,
+.row-1 > .card-services > .background {
+    width: 100%;
+    height: 150px;
+    padding: 1rem 10px;
+    border-radius: 30px 30px 10px 10px;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    position: absolute;
+    top: 50%;
+    background-color: #fff;
+}
+
+.row-2 > .card-services {
+    height: 220px;
+    width: 550px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.row-2 > .card-services > img {
+    width: 305px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px 0 0 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.row-2>.card-services>.card-services-content,
+.row-2>.card-services>.background {
+    width: 275px;
+    height: 100%;
+    padding: 3rem 10px;
+    border-radius: 30px 10px 10px 30px;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+}
+
+.card-services-content:hover {
+    background: linear-gradient(180deg, #ffffff 0%, #f3f8f1 50%, #e9e4d8 100%);
+    transition: all .8s ease-in-out;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* SEÇÃO DE PORTFÓLIO */
+#portfolio {
+    padding: 50px 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Permite posicionar os botões em relação a ele */
+}
+
+.section-portfolio {
+    width: 100%;
+    max-width: 1200px;
+    /* Largura máxima */
+    padding-top: 1rem;
+    overflow: hidden;
+    /* Esconde os cards que estão fora da área visível */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.cards-container {
+    display: flex;
+    max-width: 100%;
+    gap: 2rem;
+    padding: 1rem;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Animação suave ao mover - cubic-bezier deixa mais natural */
+}
+
+.card-portfolio {
+    height: 518px;
+    width: 346px;
+    padding: 0 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    flex-shrink: 0;
+    /* Evita que os cards encolham (!!!!!!!!) */
+}
+
+.card-portfolio:hover {
+    transform: scale(1.02);
+    /* Leve zoom ao passar o mouse */
+}
+
+.card-portfolio>img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    transition: opacity .2s ease-out;
+    position: absolute;
+}
+
+.card-content>h3 {
+    color: aliceblue;
+    position: absolute;
+    inset: auto auto 30px 30px;
+    margin: 0;
+    transition: inset .3s .3s ease-out;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.card-content>p {
+    color: aliceblue;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+    position: absolute;
+    opacity: 0;
+    max-width: 80%;
+    font-size: 14px;
+    transition: opacity .3s ease;
+    inset: auto auto 80px 30px;
+}
+
+.card-content>h3:hover {
+    inset: auto auto 30px 30px;
+    transition: inset .3s ease-out;
+}
+
+.card-portfolio:hover .card-content>p {
+    opacity: 1;
+    transition: opacity .5s .1s ease;
+}
+
+.card-portfolio:hover>img {
+    opacity: 1;
+    transition: opacity .2s ease-in;
+}
+
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Ajusta para ficar perfeitamente centralizado */
+    width: 50px;
+    height: 50px;
+    background: aliceblue;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    /* Anima todas as mudanças */
+    z-index: 100;
+    /* Fica por cima dos cards */
+}
+
+.nav-button:hover {
+    background: #a67c52;
+    transform: translateY(-50%) scale(1.1);
+    /* Cresce 10% */
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    /* Sombra colorida */
+}
+
+.nav-button:hover svg {
+    fill: aliceblue;
+    /* Ícone fica branco */
+}
+
+.nav-button:active {
+    transform: translateY(-50%) scale(0.95);
+    /* Encolhe ao clicar */
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.nav-button:disabled:hover {
+    background: aliceblue;
+    transform: translateY(-50%) scale(1);
+}
+
+.nav-button:disabled:hover svg {
+    fill: #a67c52;
+}
+
+.nav-button.prev {
+    left: 100px;
+    /* Fora do container */
+}
+
+.nav-button.next {
+    right: 100px;
+    /* Fora do container */
+}
+
+.nav-button svg {
+    width: 24px;
+    height: 24px;
+    fill: #a67c52;
+    transition: fill 0.3s ease;
+    /* Anima a mudança de cor */
+}
+
+.indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(166, 124, 82, 0.3);
+    /*rgba(128, 0, 128, 0.433);*/
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator:hover {
+    background: rgba(166, 124, 82, 0.6);
+}
+
+.indicator.active {
+    background: #a67c52;
+    /* background: purple; */
+    width: 30px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* SEÇÃO DE GALERIA */
+#galeria {
+    padding: 50px 10px;
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* IMPORTANTE: alinha conteúdo no TOPO */
+    position: relative;
+    background: #f9f7f4;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Animação suave ao mover - cubic-bezier deixa mais natural */
+}
+
+
+/* Container da grid que vai expandir/colapsar */
+.galeria-grid {
+    width: 100%;
+    max-height: 500px;
+    /* Altura quando estiver fechado */
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Animação suave ao mover - cubic-bezier deixa mais natural */
+}
+
+/* Classe que será adicionada ao expandir */
+.galeria-grid.expandido {
+    max-height: 1200px;
+    /* Aumenta a altura da seção para exibir mais cards */
+    ;
+}
+
+/* Gradiente de fade quando está fechado */
+.galeria-grid::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(249, 247, 244, 0), #f9f7f4);
+    pointer-events: none;
+    /* Permite clicar através do gradiente */
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+
+/* Remove gradiente quando expandido */
+.galeria-grid.expandido::after {
+    opacity: 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.card-galeria {
+    width: 200px;
+    height: 300px;
+}
+
+.card-galeria>img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    transition: opacity .2s ease-out;
+    border-radius: 30px 0;
+}
+
+#expandBtn {
+    top: 100%;
+    z-index: 100;
+}
+
+/* Rotaciona ícone quando expandido */
+#expandBtn.ativo {
+    transform: rotate(45deg);
+}
+
+#depoimentos {
+    padding: 50px 10px;
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-depoimentos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.card-depoimentos {
+    width: 250px;
+    height: 300px;
+    text-align: center;
+    border-left: purple solid 2px;
+    border-radius: 30px 0 0 30px;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    transition: all .4s ease-in-out;
+}
+
+.card-depoimentos:hover {
+    transform: translateY(-10px);
+    /* Levanta o card ao passar o mouse */
+}
+
+.card-depoimentos>img {
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    border-radius: 50%;
+    opacity: 0.9;
+    transition: opacity .2s ease-out;
+}
+
+#contato {
+    padding: 50px 10px;
+    gap: .4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f9f7f4;
+}
+
+#contato>form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 0.5rem;
+    gap: 8px;
+}
+
+.group > label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.obrigatorio {
+    color: red;
+    font-size: 1rem;
+}
+
+.group > input {
+    padding: 1rem;
+    width: 450px;
+    border-radius: 30px;
+    border: none;
+    font-style: italic;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    transition: all .4s ease-in-out;
+}
+
+.group > input:focus,
+.group > textarea:focus {
+    outline: none;
+    border: 1px solid #c9a87c;
+    background-color: #ffc97817;
+}
+
+.group > input::placeholder,
+.group > textarea::placeholder {
+    color: #aaa;
+}
+
+.group > .erro {
+    color: #aaa;
+    outline: none;
+    border: 1.5px solid #e57373 !important;
+    background-color: #fff9f9 !important;
+    box-shadow: 0 0 8px rgba(229, 115, 115, 0.3); /* Brilho difuso */
+    transition: all 0.3s ease;
+}
+
+.group > textarea {
+    padding: 1rem;
+    border-radius: 30px;
+    border: none;
+    font-style: italic;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    transition: all .4s ease-in-out;
+    resize: none;
+}
+
+.botao-form {
+    margin-top: .8rem;
+    padding: 1rem;
+    width: 200px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 600;
+    background: #c9a87c;
+    color: aliceblue;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    transition: all .8s ease-in-out;
+}
+
+.botao-form:hover {
+    background-color: #c9a87cc0;
+    color: aliceblue;
+    cursor: pointer;
+    transition: all .8s ease-in-out;
+}
+
+.botao-sucesso {
+    margin-top: .8rem;
+    padding: 1rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    /* visibility: hidden; */
+    /* Garante que o botão não seja clicável enquanto invisível */
+    font-size: 24px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    cursor: default;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); /* Brilho suave da mesma cor */
+    transition: all .8s ease-in-out;
+}
+
+.info {
+    width: 300px;
+    height: 90px;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #000411;
+}
+
+/* Ajuste de biblioteca intl-tel-input */
+
+/* Garante que o container da biblioteca ocupe 100% da largura do formulário */
+.iti {
+    width: 450px;
+    display: block; /* Evita quebra de linha indesejada */
+}
+
+.iti input {
+    padding: 1rem !important;
+    padding-left: 90px !important; /* Espaço extra para a bandeira não atropelar o texto */
+    width: 100% !important; /* Aqui ele usa 100% da div .iti (que já tem 450px) */
+    border-radius: 30px !important;
+    border: none !important;
+    font-style: italic;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    transition: all .4s ease-in-out;
+}
+
+/* Replicando o efeito de Focus para o telefone */
+.iti input:focus {
+    outline: none !important;
+    border: 1px solid #c9a87c !important;
+    background-color: #ffc97817 !important;
+}
+
+/* Ajuste da posição da bandeira para combinar com o border-radius */
+.iti__flag-container {
+    padding-left: 10px; /* Afasta a bandeira da borda muito curva */
+}
+
+/* Ajusta a cor do texto do DDI para combinar com formulário */
+.iti__selected-dial-code {
+    color: #555;
+    font-weight: 600;
+}
+
+/* Remove o background cinza que fica "vazando" devido ao border-radius */
+.iti__selected-flag {
+    background-color: transparent !important; /* Torna o fundo da bandeira invisível */
+    border-radius: 30px 0 0 30px; /* Acompanha a curvatura do input na esquerda */
+    padding-left: 15px !important;
+}
+
+/* Remove a linha cinza ou fundo ao passar o mouse no seletor */
+.iti__selected-flag:hover {
+    background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+/* Personaliza a lista suspensa de países */
+.iti__country-list {
+    background-color: #fdfaf6; /* Tom creme/pérola */
+    border: 1px solid #c9a87c; /* Borda dourada do seu header */
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.iti__country.iti__highlight {
+    background-color: #f8f1e5; /* Cor de destaque ao passar o mouse */
+}
+
+.iti__country-name, .iti__dial-code {
+    color: #555; /* Cor do texto para legibilidade */
+}
+
+/* BOTÃO FLUTUANTE DE WHATSAPP */
+.botao-flutuante {
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 10px 1px rgb(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+}
+
+.botao-flutuante > a > img {
+    width: 56px;
+    height: 56px;
+}
+
+.botao-flutuante:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+    transition: all .4s ease-in-out;
+}
+
+/* BOTÃO FLUTUANTE PARA VOLTAR AO TOPO DA PÁGINA */
+
+.botao-voltar-topo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 1rem;
+    left: 40px;
+    /* right: 0;
+    margin-left: auto;
+    margin-right: auto; */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /* Safari e Chrome */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 32px rgb(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    /* Garante que o botão não seja clicável enquanto invisível */
+    transform: translateY(20px);
+    /* Começa um pouco abaixo para um efeito de subida */
+    transition: opacity 0.4s ease, visibility 0.4s, transform 0.4s ease;
+
+    /* Estado inicial: Escondido abaixo da tela */
+    /* transform: translateY(200%); */
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Requisito WCAG 2.2: Foco visível */
+.botao-voltar-topo:focus-visible {
+    outline: 3px solid #0056b3;
+    outline-offset: 2px;
+}
+
+.mostrar {
+    /* Estado final: Visível na tela */
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.botao-voltar-topo>a {
+    text-decoration: none;
+    color: #333333;
+    /* Cor do Ícone (Contraste 3:1) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.botao-voltar-topo>a::after {
+    font-family: 'Material Symbols Outlined';
+    content: '\eef8';
+    font-size: 40px;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 100,
+        /* Aumentar para 700 se quiser a seta mais grossa */
+        'grad' 0,
+        'opsz' 24;
+    transition: all 0.3s ease;
+    display: inline-block;
+    /* Necessário para o transform funcionar */
+}
+
+.botao-voltar-topo:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.botao-voltar-topo:hover>a::after {
+    transform: translateY(-3px);
+}
+
+footer {
+    width: 100%;
+    height: auto;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    /* position: absolute;
+    bottom: 0; */
+    text-align: center;
+    font-size: 14px;
+    color: #c9a87c;
+    background: linear-gradient(135deg, #3a3a3a 0%, #2c2c2c 100%);
+    box-shadow: 0px 3px 10px 2px rgb(0, 0, 0, 0.50);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-links>p {
+    color: #c9a87c;
+}
+
+.social-links>p>a {
+    text-decoration: none;
+    color: #c9a87c;
+}
+
+.social-links>p>a:hover {
+    color: #c9a87c;
+    opacity: 0.8;
+    transition: all .4s ease-in-out;
+}
+
+.social-links>ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-links>ul>li {
+    font-size: 32px;
+    list-style: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links>ul>li>a {
+    text-decoration: none;
+}
+
+.social-links>ul>li>a>img {
+    width: 24px;
+}
+
+.social-links>ul>li>a:hover {
+    opacity: 0.8;
+    transition: all .4s ease-in-out;
+}
+
+.dev-info {
+    font-size: 12px;
+    padding-top: 30px;
+    border-top: 1px solid #ffffff;
+}
+
+.dev-info>p {
+    color: #c9a87c;
+}
+
+.dev-info a {
+    text-decoration: none;
+    color: #4868d7;
+}
+
+.dev-info a:hover {
+    color: #4867d75b;
+    transition: .4s all ease-in-out;
+}
+
+/* Requisito de Acessibilidade 2026: Preferência por transparência reduzida */
+@media (prefers-reduced-transparency: reduce) {
+    .btn-voltar-topo {
+        background: #F5F5F5;
+        /* Fundo sólido para quem tem sensibilidade visual */
+        backdrop-filter: none;
+    }
+}
+
+/* RESPONSIVIDADE PARA TELAS MENORES */
+
+/* 1024px */
+@media (max-width: 1024px) {
+    /* ALTURA DO HEADER EM SCROLL */
+    section {
+        scroll-margin-top: 60px; /* Ajuste conforme a altura do header */
+    }
+
+    /* SEÇÃO DE SOBRE MIM */
+    #sobre-mim {
+        padding: 50px;
+    }
+
+    /* SEÇÃO DE SERVIÇOS */
+    #servicos {
+        padding: 50px;
+    }
+
+    #servicos > .row-2 {
+        margin-top: 1rem;
+        padding: 0;
+    }
+
+    .row-1 > .card-services {
+        height: 210px;
+        width: 300px;
+    }
+
+    .row-2 > .card-services {
+        height: 170px;
+    }
+
+    .row-1 > .card-services > .card-services-content,
+    .row-1 > .card-services > .background {
+        height: 130px;
+    }
+
+    .row-2 > .card-services > .card-services-content,
+    .row-2 > .card-services > .background {
+        width: 220px;
+        padding: 2rem 10px;
+    }
+
+    .card-services-content > h3 {
+        font-size: 14px;
+    }
+
+    .card-services-content > p {
+        font-size: 12px;
+        padding: 0.2rem;
+    }
+
+    /* SEÇÃO DE PORTFÓLIO */
+    #portfolio {
+        padding: 50px;
+    }
+
+    #prevBtn {
+        left: 30px;
+    }
+
+    #nextBtn {
+        right: 30px;
+    }
+
+    .card-portfolio {
+        height: 370px;
+    }
+
+    /* SEÇÃO DE GALERIA */
+    .galeria-grid {
+        max-height: 350px;
+    }
+
+    .card-galeria {
+        height: 200px;
+        width: 150px;
+    }
+
+    /* SEÇÃO DE DEPOIMENTOS */
+    #depoimentos {
+        padding: 40px;
+    }
+
+    .card-depoimentos {
+        width: 210px;
+        height: 250px;
+    }
+
+    .card-depoimentos > img {
+        width: 110px;
+        height: 110px;
+        padding: 15px;
+    }
+
+    /* SEÇÃO DE CONTATO */
+    #contato {
+        padding: 40px;
+    }
+
+    #contato > #formulario {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0;
+    }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+    /* MENU */
+    .links {
+        position: absolute;
+        top: 96px;
+        right: 0;
+        width: 100vw;
+        height: 40vh;
+        background: linear-gradient(to right, #c9a87c 0%, #b8926b 100%);
+        flex-direction: column;
+        justify-content: space-evenly;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+    
+    
+    /* ALTURA DO HEADER EM SCROLL */
+    section {
+        scroll-margin-top: 60px; /* Ajuste conforme a altura do header */
+    }
+
+    /* SEÇÃO DE SOBRE MIM */
+    #sobre-mim {
+        padding: 30px;
+    }
+
+    .section-about-me {
+        gap: 3rem;
+    }
+
+    /* SEÇÃO DE SERVIÇOS */
+    #servicos {
+        padding: 30px;
+        gap: 2rem;
+    }
+
+    .row-1, .row-2 {
+        gap: 0.6rem;
+    }
+
+    .card-services {
+        margin: 0;
+    }
+
+    /* SEÇÃO DE PORTFÓLIO */
+    #portfolio {
+        padding: 30px;
+    }
+
+    #prevBtn {
+        left: 16px;
+    }
+
+    #nextBtn {
+        right: 16px;
+    }
+
+    /* SEÇÃO DE GALERIA */
+    #galeria {
+        padding: 30px;
+    }
+    .row {
+        flex-wrap: nowrap;
+    }
+
+    /* SEÇÃO DE FORMULÁRIO */
+    #formulario {
+        padding: 30px;
+    }
+
+    .group > input {
+        width: 290px;
+    }
+
+    .group > textarea {
+        width: 290px;
+    }
+
+    .iti {
+        width: 290px;
+    }
+}
+
+@media (max-width: 426px) {
+    /* ALTURA DO HEADER EM SCROLL */
+    section {
+        scroll-margin-top: 60px; /* Ajuste conforme a altura do header */
+    }
+
+    /* HERO SECTION */
+    #hero {
+        padding: 20px;
+    }
+
+    .content-hero {
+        width: 280px;
+    }
+
+    .title-hero {
+        font-size: 2.5rem;
+    }
+
+    /* SEÇÃO DE SOBRE MIM */
+    #sobre-mim {
+        padding: 20px;
+    }
+
+    .section-about-me {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .section-about-me > img {
+        max-width: 280px;
+        max-height: 180px;
+    }
+
+    .card-about-me-text {
+        text-align: center;
+        font-size: 14px;
+        max-width: 280px;
+    }
+
+     /* SEÇÃO DE SERVIÇOS */
+    #servicos {
+        height: auto;
+        padding: 30px 30px 40px 30px;
+        gap: 0 !important;
+    }
+
+    .row-1, .row-2 {
+        flex-direction: column;
+        align-items: center;
+        margin: 0 !important;
+    }
+
+    .row-1 > .card-services {
+        margin: 1rem 0;
+    }
+
+    .row-2 > .card-services {
+        height: 210px;
+        width: 300px;
+        margin: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .row-2 .card-services > img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+        position: absolute;
+        top: 0;
+    }
+
+    .row-2 >.card-services > .card-services-content,
+    .row-2 > .card-services > .background {
+        width: 100%;
+        height: 150px;
+        padding: 1rem 10px;
+        border-radius: 30px 30px 10px 10px;
+        position: absolute;
+        top: 50%;
+        background-color: #fff;
+    }
+
+    /* SEÇÃO DE PORTFÓLIO */
+    #prevBtn {
+        left: 10px;
+    }
+
+    #nextBtn {
+        right: 10px;
+    }
+
+    /* SEÇÃO DE GALERIA */
+    #galeria {
+        padding: 30px;
+    }
+
+    .row {
+        animation: spin 10s linear infinite;
+    }
+
+    .row-reverse {
+        animation: spin-reverse 8s linear infinite;
+    }
+
+    .card-galeria, .card-galeria > img {
+        width: 140px;
+        height: 180px;
+    }
+    
+    @keyframes spin {
+        from {
+            translate: 0%;
+        }
+
+        to {
+            translate: -100%;
+        }
+    }
+
+    @keyframes spin-reverse {
+        from {
+            translate: 0%;
+        }
+
+        to {
+            translate: 100%;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    /* HEADER */
+    header {
+        width: 320px;
+        padding: 20px 0px;
+    }
+}
+
