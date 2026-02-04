@@ -1534,7 +1534,7 @@ footer {
     }
 
     .row {
-        animation: spin 10s linear infinite;
+        animation: spin 15s linear infinite;
     }
 
     .row-reverse {
@@ -1548,21 +1548,21 @@ footer {
     
     @keyframes spin {
         from {
-            translate: 0%;
+            translate: 60%;
         }
 
         to {
-            translate: -100%;
+            translate: -60%;
         }
     }
 
     @keyframes spin-reverse {
         from {
-            translate: 0%;
+            translate: -40%;
         }
 
         to {
-            translate: 100%;
+            translate: 40%;
         }
     }
 
