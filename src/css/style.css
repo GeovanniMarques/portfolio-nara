@@ -1180,6 +1180,10 @@ footer {
     box-shadow: 0px 3px 10px 2px rgb(0, 0, 0, 0.50);
 }
 
+.logotipo-footer {
+    width: 128px;
+}
+
 .social-links {
     display: flex;
     flex-direction: column;
