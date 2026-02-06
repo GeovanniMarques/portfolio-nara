@@ -58,6 +58,7 @@ class MobileNavBar {
         this.activeClass = "active";
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleLinkClick = this.handleLinkClick.bind(this); // Para desativar o menu mobile ao clicar em um link
     }
 
     animateLinks() {
@@ -76,8 +77,22 @@ class MobileNavBar {
         this.animateLinks();
     }
 
+    // Fecha o menu quando clicar em um link
+    handleLinkClick() {
+        if (this.navList.classList.contains(this.activeClass)) {
+            this.navList.classList.remove(this.activeClass);
+            this.mobileMenu.classList.remove(this.activeClass);
+            this.animateLinks();
+        }
+    }
+
     addClickEvent() {
         this.mobileMenu.addEventListener("click", this.handleClick);
+
+        // Adiciona evento de clique em cada link
+        this.navLinks.forEach((link) => {
+            link.addEventListener("click", this.handleLinkClick);
+        });
     }
 
     init() {
