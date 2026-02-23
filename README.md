@@ -1,4 +1,22 @@
-# Pontos de atenção
+# Uma renderização lenta e um desempenho inferior do site (carregamento demorado) geralmente são causados por uma combinação de recursos pesados, infraestrutura inadequada e código não otimizado. Sites que demoram mais de 3 segundos para carregar sofrem com alta taxa de rejeição e pior posicionamento no Google. 
+Aqui estão as principais causas e soluções para um site lento:
+Principais Causas de Lento Desempenho
+Imagens não otimizadas: Imagens de alta resolução e tamanho exagerado são a causa número um de lentidão.
+Hospedagem de baixa qualidade: Servidores compartilhados sobrecarregados, com pouca CPU/RAM ou distantes geograficamente dos usuários geram alta latência.
+Bloqueio de renderização (JS/CSS): Arquivos JavaScript e CSS carregados antes do conteúdo visual impedem que a página seja exibida rapidamente.
+Excesso de plugins e scripts de terceiros: Muitos plugins (especialmente em WordPress) e scripts externos (anúncios, rastreadores) sobrecarregam o navegador.
+Falta de Cache: A ausência de mecanismos de cache obriga o servidor a processar a mesma página repetidamente.
+Código "bloat" (inchado): Códigos CSS e JavaScript desnecessários ou não minificados. 
+Como Melhorar a Renderização e Desempenho
+Otimize Imagens: Utilize formatos modernos como WebP ou AVIF e comprima imagens usando ferramentas como TinyPNG ou Squoosh.
+Use uma CDN (Content Delivery Network): Distribua o conteúdo do site em servidores globais para reduzir a distância física entre o usuário e o servidor.
+Implemente Cache: Utilize plugins de cache (em CMS) ou configurações do servidor (como LiteSpeed Cache) para armazenar páginas estáticas.
+Minifique e Adie o JS/CSS: Minifique arquivos (remova espaços e comentários) e use async ou defer no JavaScript para não bloquear a renderização.
+Atualize a Hospedagem: Considere mudar para uma hospedagem VPS ou Cloud se a atual for compartilhada e insatisfatória.
+Reduza o Caminho de Renderização Crítico: Priorize o carregamento do que aparece primeiro na tela (acima da dobra). 
+Ferramentas para diagnosticar: Google PageSpeed Insights, GTmetrix e Lighthouse. 
+
+## Pontos de atenção
 
 1. **Aria-labels**
 2. **SEO friendly**
